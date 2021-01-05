@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<el-progress type="dashboard" :percentage="handledCounter*100"></el-progress>
-		<el-table height="1000px" :data="rates" highlight-current-row @current-change="handleCurrentChange">
+		<el-progress type="dashboard" :percentage="100*handledCounter/(rates.length)"></el-progress>
+		<el-table height="400px" :data="rates" highlight-current-row @current-change="handleCurrentChange">
 			<el-table-column type="expand">
 				<template slot-scope="props">
 					<el-form label-position="left" inline class="demo-table-expand">
