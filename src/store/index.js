@@ -7,6 +7,7 @@ export default new Vuex.Store({
 	state: {
 		userInfo: null,
 		taskID: null,
+		tasks:null,
 	},
 	mutations: {
 		setUserInfo(state, userInfo) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
 		},
 		setTaskID(state, taskID) {
 			state.taskID = taskID;
+		},
+		setTasks(state, tasks) {
+			state.tasks = tasks;
 		}
 	},
 	actions: {},
