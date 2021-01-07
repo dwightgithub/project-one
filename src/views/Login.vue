@@ -59,7 +59,7 @@ export default {
           let loginRes = successResponse.data;
           if (loginRes.success) {
             this.$store.commit("setUserInfo", loginRes.userInfo);
-            this.$store.commit("setTaskID", loginRes.defaultTaskID);
+            this.$store.commit("setTaskInfo", {taskID:loginRes.defaultTaskID,taskType:loginRes.taskType});
             this.$router.replace({
               path: "/streetView"
             });

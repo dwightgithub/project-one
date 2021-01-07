@@ -1,7 +1,7 @@
 <template>
   <div>
     <baidu-map
-      scrollWheelZoom="true"
+      :scrollWheelZoom="true"
       ref="baiduMap"
       class="map"
       :center="'成都'"
@@ -29,11 +29,11 @@
 </template>
 
 <script>
-// import {BmlHeatmap} from 'vue-baidu-map'
+ import {BmlHeatmap} from 'vue-baidu-map'
 
 export default {
   components: {
-    // BmlHeatmap
+     BmlHeatmap
   },
   data() {
     return {

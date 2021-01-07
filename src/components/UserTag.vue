@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col span="4">
+      <el-col :span="4">
         <div>
           <el-popover class="head" placement="bottom" width="300" trigger="click">
             <div>
@@ -28,7 +28,7 @@
           <div class="divver">{{this.userInfo.nickName}}</div>
         </div>
       </el-col>
-      <el-col span="8">
+      <el-col :span="8">
         <el-collapse class="detailInfo" value="detail">
           <el-collapse-item style="margin-left: 2rem;" title="用户信息" name="detail">
             <li class="detailInfolst">用户注册时间：{{this.userInfo.createDate}}</li>
@@ -93,30 +93,7 @@ export default {
     },
     ///2、打开创建任务栏
     CreateTask() {
-      if (this.$store.state.taskID == -1) {
-        this.$emit("parChangeTabShow", "2", true);
-      } else {
-        alert("当前有未完成的任务");
-      }
-    },
-    ///3、查询当前任务号对应任务
-    QueryTaskInfo: function() {
-      let that = this;
-      //如果没有任务，taskid为-1
-      if (that.currentTaskID == -1) return;
-      //如果有任务，则查询本次任务，并将本页面打开
-      this.$axios("https://localhost:5001/api/image/" + that.currentTaskID)
-        .then(response => {
-		  this.$store.commit("setTasks", response.data);
-          if (response.data.taskType == 0)
-            this.$emit("parChangeTabShow", "4", true);
-          else if (response.data.taskType == 1)
-            this.$emit("parChangeTabShow", "3", true);
-        })
-        .catch(error => {
-          console.log(error, "error");
-        }); // 失败的返回
-	}
+    }
   },
   mounted:function(){
 	  this.currentTaskID = this.$store.state.taskID;
@@ -144,11 +121,6 @@ export default {
       return target;
     },
   },
-  watch: {
-    currentTaskID: function() {
-      this.QueryTaskInfo();
-    }
-  }
 };
 </script>
 

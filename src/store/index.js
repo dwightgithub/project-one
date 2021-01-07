@@ -5,19 +5,21 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		userInfo: null,
-		taskID: null,
-		tasks:null,
+		userInfo: {
+			faceID:1,
+			tasks:[],
+		},
+		taskInfo:{
+			taskID:-1,
+			taskType:0,
+		}
 	},
 	mutations: {
 		setUserInfo(state, userInfo) {
 			state.userInfo = userInfo;
 		},
-		setTaskID(state, taskID) {
-			state.taskID = taskID;
-		},
-		setTasks(state, tasks) {
-			state.tasks = tasks;
+		setTaskInfo(state, taskInfo) {
+			state.taskInfo = taskInfo;
 		}
 	},
 	actions: {},

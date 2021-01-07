@@ -69,7 +69,7 @@ export default {
       ],
       task: {
         taskType: true, //0是评分任务，1是对比任务
-        resource: "美观",//0是美观，1是安全，2是生态，3是贫穷，4是繁忙
+        resource: "美观", //0是美观，1是安全，2是生态，3是贫穷，4是繁忙
         groupCount: 10,
         region: []
       }
@@ -98,10 +98,11 @@ export default {
           .post("https://localhost:5001/api/login/createTask", obj)
           .then(res => {
             if (res) {
-              //创建任务成功后，设置任务号，关闭创建页面，打开任务界面
-              this.$store.commit("setTaskID", res.taskID);
-              this.$emit("parChangeTabShow", 4 - obj.taskType, true);
-              this.$emit("parChangeTabShow", "2", false);
+              //创建任务成功后，设置将新任务信息放到VUEX里，由StreetViewMain主界面控制具体任务消隐，任务界面出现后会加载内容
+              this.$store.commit("setTaskInfo", {
+                taskID: res.data.taskID,
+                taskType: obj.taskType
+              });
             }
           })
           .catch(e => {
