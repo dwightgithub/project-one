@@ -1,5 +1,8 @@
 <template>
   <div>
+<<<<<<< HEAD
+    <baidu-map scrollWheelZoom="true" ref="baiduMap" class="map" :center="'成都'" :zoom="14">
+=======
     <baidu-map
       scrollWheelZoom="true"
       ref="baiduMap"
@@ -7,6 +10,7 @@
       :center="'成都'"
       :zoom="14"
     >
+>>>>>>> parent of e93f230... 实现基本功能
       <bm-map-type
         :map-types="['BMAP_NORMAL_MAP', 'BMAP_HYBRID_MAP']"
         anchor="BMAP_ANCHOR_TOP_LEFT"
