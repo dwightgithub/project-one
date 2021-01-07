@@ -25,6 +25,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 	export default {
 		components: {},
 		data() {
@@ -94,6 +95,80 @@
 			}
 		}
 	};
+=======
+export default {
+  components: {},
+  data() {
+    return {
+      marks: {
+        5: "5组",
+        10: "10组",
+        15: "15组"
+      },
+      options: [
+        {
+          value: "chengdu",
+          label: "成都市",
+          children: [
+            {
+              value: "wuhou",
+              label: "武侯区"
+            },
+            {
+              value: "qingyang",
+              label: "青羊区"
+            },
+            {
+              value: "shuangliu",
+              label: "双流区"
+            }
+          ]
+        }
+      ],
+      task: {
+        taskType: true, //0是评分任务，1是对比任务
+        resource: "美观",//0是美观，1是安全，2是生态，3是贫穷，4是繁忙
+        groupCount: 10,
+        region: []
+      }
+    };
+  },
+  methods: {
+    ///创建任务
+    CreateTask() {
+      let obj;
+      let currentTime = new Date();
+      let level = 0;
+      if (this.task.resource == "安全") level = 1;
+      else if (this.task.resource == "生态") level = 2;
+      else if (this.task.resource == "贫穷") level = 3;
+      else if (this.task.resource == "繁忙") level = 4;
+      (obj = {
+        userID: this.$store.state.userInfo.idUserInfo,
+        taskType: this.task.taskType ? 1 : 0,
+        level: level,
+        createTime: currentTime,
+        taskCount: this.task.groupCount,
+        area: "成都市"
+      }),
+        //将数据库中
+        this.$axios
+          .post("https://localhost:5001/api/login/createTask", obj)
+          .then(res => {
+            if (res) {
+              //创建任务成功后，设置任务号，关闭创建页面，打开任务界面
+              this.$store.commit("setTaskID", res.taskID);
+              this.$emit("parChangeTabShow", 4 - obj.taskType, true);
+              this.$emit("parChangeTabShow", "2", false);
+            }
+          })
+          .catch(e => {
+            alert("修改失败。失败原因：" + e);
+          });
+    }
+  }
+};
+>>>>>>> parent of e93f230... 实现基本功能
 </script>
 
 <style>

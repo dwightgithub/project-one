@@ -19,6 +19,7 @@
 
 
 <script>
+<<<<<<< HEAD
 	export default {
 		name: "Login",
 		data() {
@@ -55,6 +56,68 @@
 			}
 		}
 	}
+=======
+export default {
+  name: "Login",
+  data() {
+    return {
+      loginForm: {
+        username: "",
+        password: ""
+      },
+      responseResult: false,
+      failReason: "",
+      alertTitle: ""
+    };
+  },
+  methods: {
+    login() {
+      this.$axios
+        .post("https://localhost:5001/api/login/login", this.loginForm)
+        .then(successResponse => {
+          let loginRes = successResponse.data;
+          if (loginRes.success) {
+            this.$store.commit("setUserInfo", loginRes.userInfo);
+            this.$store.commit("setTaskID", loginRes.defaultTaskID);
+            this.$router.replace({
+              path: "/streetView"
+            });
+          } else {
+            this.failReason = "else" + loginRes.reason;
+            this.responseResult = true;
+            this.alertTitle = "登录失败";
+          }
+        })
+        .catch(e => {
+          this.failReason = "catch" + e.message;
+          this.responseResult = true;
+          this.alertTitle = "登录失败";
+        });
+    },
+    register() {
+      this.$axios
+        .post("https://localhost:5001/api/login/register", this.loginForm)
+        .then(successResponse => {
+          let loginRes = successResponse.data;
+          if (loginRes.success) {
+			this.alertTitle = "注册成功";
+			this.failReason = this.loginForm.username+"注册成功";
+            this.responseResult = true;
+          } else {
+            this.alertTitle = "注册失败";
+            this.failReason = "else" + loginRes.reason;
+            this.responseResult = true;
+          }
+        })
+        .catch(e => {
+          this.alertTitle = "注册失败";
+          this.failReason = "catch" + e.message;
+          this.responseResult = true;
+        });
+    }
+  }
+};
+>>>>>>> parent of e93f230... 实现基本功能
 </script>
 
 <style>
