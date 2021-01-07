@@ -5,21 +5,25 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		userInfo: {
-			faceID:1,
-			tasks:[],
-		},
-		taskInfo:{
-			taskID:-1,
-			taskType:0,
-		}
+		userInfo: null,
+		taskID: null,
+<<<<<<< HEAD
+=======
+		tasks:null,
+>>>>>>> parent of e93f230... 实现基本功能
 	},
 	mutations: {
 		setUserInfo(state, userInfo) {
 			state.userInfo = userInfo;
 		},
-		setTaskInfo(state, taskInfo) {
-			state.taskInfo = taskInfo;
+		setTaskID(state, taskID) {
+			state.taskID = taskID;
+<<<<<<< HEAD
+=======
+		},
+		setTasks(state, tasks) {
+			state.tasks = tasks;
+>>>>>>> parent of e93f230... 实现基本功能
 		}
 	},
 	actions: {},
